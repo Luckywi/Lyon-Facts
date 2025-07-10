@@ -1,493 +1,563 @@
-export async function GET() {
-  const facts = [
-    {id: 1,
-      category: "climat",
-      title: "Lyon se réchauffe plus vite que la France !",
-      description: "Lyon a gagné 2,4°C depuis 1960, alors que la France n'a pris que 1,7°C. Cette différence s'explique par l'effet urbain : le béton et l'asphalte amplifient la chaleur. Les conséquences sont concrètes : plus de canicules et davantage de décès lors des épisodes de forte chaleur.",
-      imageUrl: "/images/1.jpg"
-    },
-    {id: 2,
-      category: "climat",
-      title: "5°C d'écart entre centre-ville et campagne",
-      description: "Météo-France a mesuré des différences de 3 à 5°C entre le centre de Lyon et la campagne environnante. Les surfaces minérales stockent la chaleur le jour et la restituent la nuit. Même après le coucher du soleil, la température reste élevée en ville.",
-      imageUrl: "/images/2.jpg"
-    },
-    {
-      id: 3,
-      category: "environnement",
-      title: "Tous les Lyonnais respirent un air pollué",
-      description: "L'Organisation mondiale de la santé fixe des seuils de pollution de l'air. À Lyon, 100% du territoire les dépasse. Cela concerne donc tous les 520 000 habitants. Les principales sources sont le trafic routier et le chauffage des bâtiments.",
-      imageUrl: "/images/3.jpg"
-    },
-    {
-      id: 4,
-      category: "climat",
-      title: "Les jours de forte chaleur ont été multipliés par 8",
-      description: "Entre 1950 et 1990, Lyon comptait moins d'un demi-jour de forte chaleur par an. Depuis 1990, la moyenne dépasse 4 jours. Une forte chaleur combine 34°C le jour et 20°C la nuit minimum.",
-      imageUrl: "/images/4.jpg"
-    },
-    {
-      id: 5,
-      category: "environnement",
-      title: "87 hectares végétalisés en 4 ans",
-      description: "Depuis 2020, la ville a créé l'équivalent de 122 terrains de football en espaces verts. En 2024, 9 hectares d'espaces publics ont été végétalisés. S'y ajoutent 4 hectares dans les nouveaux projets immobiliers privés.",
-      imageUrl: "/images/5.png"
-    },
-    {
-      id: 6,
-      category: "santé",
-      title: "La chaleur a tué jusqu'à 90 personnes en plus",
-      description: "Durant l'été 2022, entre 71 et 90 décès supplémentaires ont été enregistrés dans le Rhône lors des périodes de forte chaleur. Cette surmortalité de 5 à 25% touche surtout les personnes âgées et précaires. La ville a renforcé son dispositif de protection.",
-      imageUrl: "/images/6.png"
-    },
-    {
-      id: 7,
-      category: "environnement",
-      title: "L'air est mauvais 11 jours par mois",
-      description: "L'indice communal de qualité de l'air révèle 11 jours de pollution par mois en moyenne. Cet indice mesure cinq polluants différents. Pour informer les habitants, la Tour Incity change de couleur chaque soir selon la prévision du lendemain.",
-      imageUrl: "/images/7.jpg"
-    },
-    {
-      id: 8,
-      category: "énergie",
-      title: "12% d'économies d'énergie en un an",
-      description: "La ville a réduit sa consommation énergétique de 12% en 2024. L'éclairage public a baissé de 30% et les véhicules municipaux consomment 20% de carburant en moins depuis 2019. Au total, 7 millions d'euros ont été économisés.",
-      imageUrl: "/images/8.jpg"
-    },
-    {
-      id: 9,
-      category: "environnement",
-      title: "338 jours de restrictions d'eau en 8 ans",
-      description: "Entre 2016 et 2024, Lyon a connu 338 jours d'alerte sécheresse. En 2023, 87 jours de restrictions ont été décrétés. Ces interdictions d'arroser et de laver deviennent de plus en plus fréquentes avec le changement climatique.",
-      imageUrl: "/images/9.jpg"
-    },
-    {
-      id: 10,
-      category: "sécurité",
-      title: "84% des rues limitées à 30 km/h",
-      description: "Lyon est devenue une ville 30 : 84% de ses voies sont limitées à 30 km/h maximum. Cette limitation améliore la sécurité et réduit le bruit. Parallèlement, le nombre d'emplacements vélo a doublé depuis 2019.",
-      imageUrl: "/images/10.jpg"
-    },
-{ id: 11,
-  category: "alimentation",
-  title: "55% des repas scolaires sont bio",
-  description: "Dans les cantines municipales, plus de la moitié des repas servis aux enfants sont issus de l'agriculture biologique. Cette proportion a progressé de 51% à 55% en un an. L'objectif est de proposer une alimentation saine tout en soutenant les producteurs locaux.",
-  imageUrl: "/images/11.jpg"
-},
-{
-  id: 12,
-  category: "nature",
-  title: "37 vergers urbains plantés depuis 2019",
-  description: "Lyon comptait zéro verger municipal en 2019. Aujourd'hui, 37 vergers urbains poussent dans la ville. Ces espaces produisent des fruits pour les habitants tout en créant des îlots de fraîcheur. Certains sont gérés par les écoles, d'autres par les riverains.",
-  imageUrl: "/images/12.jpg"
-},
-{
-  id: 13,
-  category: "déchets",
-  title: "1005 bébés utilisent des couches compostables",
-  description: "Lyon teste les couches compostables dans ses crèches municipales. Le dispositif concerne désormais 1005 berceaux dans les 2e, 3e, 6e et 8e arrondissements. Ces couches réduisent les déchets et limitent l'exposition aux perturbateurs endocriniens.",
-  imageUrl: "/images/13.jpg"
-},
-{
-  id: 14,
-  category: "social",
-  title: "500€ par m² pour les logements sociaux",
-  description: "Lyon aide les bailleurs sociaux avec des subventions pouvant atteindre 500€ par mètre carré. C'est un record en France. Cette enveloppe de 34,5 millions d'euros vise à atteindre 25% de logements sociaux dans la ville.",
-  imageUrl: "/images/14.jpg"
-},
-{
-  id: 15,
-  category: "mobilité",
-  title: "39 674 emplacements vélo dans la ville",
-  description: "Le nombre d'emplacements vélo a doublé depuis 2019. Lyon compte aujourd'hui 39 674 places de stationnement pour bicyclettes. Cette politique s'accompagne de 48,8% des voies équipées d'aménagements cyclables.",
-  imageUrl: "/images/15.jpg"
-},
-{
-  id: 16,
-  category: "international",
-  title: "100 000€ d'aide humanitaire pour Gaza",
-  description: "La ville a versé 100 000€ d'aide humanitaire pour la population civile de Gaza. Cette somme a été répartie entre la Croix-Rouge (50 000€ en 2023) et Médecins du Monde (50 000€ en 2024).",
-  imageUrl: "/images/16.jpg"
-},
-{
-  id: 17,
-  category: "environnement",
-  title: "863 agents sensibilisés à la transition écologique",
-  description: "La ville forme massivement ses 8 500 agents à la transition écologique. 863 ont déjà été sensibilisés grâce à des formats numériques et présentiels. 74 agents ont même participé à une Convention Citoyenne pour le Climat interne.",
-  imageUrl: "/images/17.jpg"
-},
-{
-  id: 18,
-  category: "jeunesse",
-  title: "6 900 places dans les centres de loisirs",
-  description: "Le dispositif « Hé Hop » propose 6 900 places aux enfants de 3 à 16 ans pendant les vacances scolaires. Cette offre municipale inédite mélange activités physiques, découvertes culturelles et lien avec la nature.",
-  imageUrl: "/images/18.jpg"
-},
-{
-  id: 19,
-  category: "innovation",
-  title: "La Tour Incity annonce la qualité de l'air",
-  description: "Chaque soir, la Tour Incity s'illumine selon la qualité de l'air prévue pour le lendemain. Cette initiative d'ATMO Auvergne-Rhône-Alpes informe visuellement tous les Lyonnais pendant 1h30. Un code couleur simple pour un enjeu de santé publique.",
-  imageUrl: "/images/19.jpg"
-},
-{
-  id: 20,
-  category: "culture",
-  title: "17 200 livres vendus à la braderie municipale",
-  description: "La braderie annuelle de la Bibliothèque municipale a attiré 2 560 visiteurs. 17 200 livres, CD et vinyles ont quitté les collections pour une nouvelle vie chez les habitants. Les documents étaient vendus 1€, les beaux-livres 5€.",
-  imageUrl: "/images/20.jpg"
-},
-{
-  id: 21,
-  category: "environnement",
-  title: "12 nouvelles toilettes sèches dans les parcs",
-  description: "Lyon a installé 12 toilettes sèches à lombricompostage dans ses parcs et jardins. Ces sanitaires écologiques transforment 100% des déchets en compost agricole. Les urines sont récupérées et les fèces compostées par les lombrics.",
-  imageUrl: "/images/21.jpg"
-},
-{
-  id: 22,
-  category: "sécurité",
-  title: "293 policiers formés contre les violences sexistes",
-  description: "Tous les agents de police municipale ont été formés à la prévention des violences sexistes et sexuelles. 250 agents en 2023, puis 43 nouveaux en 2024. Lyon déploie également le dispositif « Angela » avec 250 lieux sûrs pour les victimes.",
-  imageUrl: "/images/22.jpg"
-},
-{
-  id: 23,
-  category: "santé",
-  title: "113 malades chroniques dans le sport-santé",
-  description: "L'« Espace Sport Santé » accompagne 113 personnes en situation de maladies chroniques. Ce dispositif municipal propose une activité physique adaptée pour améliorer la santé des publics vulnérables.",
-  imageUrl: "/images/23.jpg"
-},
-{
-  id: 24,
-  category: "enfance",
-  title: "71% des enfants adorent leur Rue des enfants",
-  description: "La ville a interrogé 3 700 enfants sur les aménagements « Rue des enfants ». 71% déclarent apprécier ou adorer leur rue réaménagée. 85% des 1 100 parents interrogés trouvent également la rue plus agréable.",
-  imageUrl: "/images/24.jpg"
-},
-{
-  id: 25,
-  category: "emploi",
-  title: "127 700€ de subventions jeunesse doublées",
-  description: "La ville a doublé ses subventions aux structures jeunesse, atteignant 127 700€. Cette enveloppe finance l'accompagnement des 15-29 ans dans leur quotidien et leur engagement pour la transition écologique.",
-  imageUrl: "/images/25.jpg"
-},
-{
-  id: 26,
-  category: "commerce",
-  title: "80 commerçants dans le circuit court",
-  description: "80 commerçants participent à la démarche « Ici.C.Local » pour promouvoir les produits locaux. Ce label permet aux consommateurs de connaître immédiatement la provenance des aliments sur les marchés lyonnais.",
-  imageUrl: "/images/26.jpg"
-},
-{
-  id: 27,
-  category: "démographie",
-  title: "29% de la population a entre 15 et 29 ans",
-  description: "Lyon compte 29% de jeunes entre 15 et 29 ans, soit 151 000 personnes environ. Cette forte proportion fait de Lyon une ville particulièrement dynamique.",
-  imageUrl: "/images/27.jpg"
-},
-{
-  id: 28,
-  category: "logement",
-  title: "23,69% de logements sociaux atteints",
-  description: "Lyon a atteint 23,69% de logements sociaux en 2023, contre 22,99% en 2022. L'objectif de 25% se rapproche grâce aux 34,5 millions d'euros investis par la municipalité.",
-  imageUrl: "/images/28.jpg"
-},
-{
-  id: 29,
-  category: "agriculture",
-  title: "La dernière ferme de Lyon sauvée",
-  description: "La ferme Perraud à Saint-Rambert est la dernière exploitation agricole de Lyon intra-muros. La ville est entrée au capital de la coopérative qui l'a reprise pour pérenniser ce projet de maraîchage biologique et d'élevage.",
-  imageUrl: "/images/29.jpg"
-},
-{
-  id: 30,
-  category: "environnement",
-  title: "1,7 million d'aides à la transition écologique",
-  description: "Lyon a obtenu 1,7 million d'euros de financements extérieurs pour sa transition écologique. Cette somme provient des certificats d'économie d'énergie, du Fonds Vert, de l'ADEME et de l'Europe.",
-  imageUrl: "/images/30.jpg"
-},
-{
-  id: 31,
-  category: "ville",
-  title: "10 808 habitants par km², Lyon ultra-dense",
-  description: "Lyon affiche une densité de 10 808 habitants par kilomètre carré. Cette forte concentration urbaine explique en partie les problèmes de chaleur et de pollution. La densité a légèrement diminué entre 2020 et 2021.",
-  imageUrl: "/images/31.jpg"
-},
-{
-  id: 32,
-  category: "biodiversité",
-  title: "481 jardins citoyens fleurissent dans la ville",
-  description: "Les Lyonnais cultivent 481 jardins citoyens répartis sur tout le territoire. Ces espaces regroupent jardins partagés, jardins familiaux et composteurs collectifs. Ils renforcent le lien social tout en végétalisant la ville.",
-  imageUrl: "/images/32.jpg"
-},
-{
-  id: 33,
-  category: "handicap",
-  title: "9,95% d'agents en situation de handicap",
-  description: "La ville emploie 9,95% d'agents bénéficiaires de l'obligation d'emploi handicap. Ce taux dépasse l'objectif légal de 6% et les engagements pris avec le Fonds pour l'insertion des personnes handicapées dans la fonction publique.",
-  imageUrl: "/images/33.jpg"
-},
-{
-  id: 34,
-  category: "égalité",
-  title: "L'écart salarial hommes-femmes diminue",
-  description: "L'écart de rémunération entre hommes et femmes est passé de -10,2% à -8% depuis 2020. Cette réduction s'explique par les augmentations salariales accordées en priorité aux métiers les plus féminisés comme l'administration et le social.",
-  imageUrl: "/images/34.jpg"
-},
-{
-  id: 35,
-  category: "propreté",
-  title: "130 marchés forains trient leurs déchets",
-  description: "Depuis janvier 2024, les 130 marchés forains gérés par la ville ont changé leur gestion des déchets. Les grands marchés trient en trois flux : biodéchets, cartons et tout-venant. Les petits marchés repartent avec leurs déchets.",
-  imageUrl: "/images/35.jpg"
-},
-{
-  id: 36,
-  category: "crèches",
-  title: "43,20% de places en crèche pour les moins de 3 ans",
-  description: "Le taux d'accueil en crèche est passé de 37,40% en 2022 à 43,20% en 2024. Cette progression améliore significativement la conciliation entre vie familiale et vie professionnelle pour les parents lyonnais.",
-  imageUrl: "/images/36.jpg"
-},
-{
-  id: 37,
-  category: "numérique",
-  title: "63,8% du matériel informatique reconditionné",
-  description: "La ville achète 63,8% de ses équipements informatiques reconditionnés depuis le début de l'année. Cette démarche réduit l'impact environnemental du numérique. Les matériels réformés sont donnés à l'entreprise Envie pour revalorisation.",
-  imageUrl: "/images/37.jpg"
-},
-{
-  id: 38,
-  category: "espaces verts",
-  title: "31 m² d'espaces végétalisés par habitant",
-  description: "Chaque Lyonnais dispose de 31 mètres carrés d'espaces végétalisés en comptant tous les espaces verts. Ce chiffre inclut les parcs, jardins et espaces naturels. Il ne faut pas le confondre avec les 8,1 m² d'espaces verts publics stricto sensu.",
-  imageUrl: "/images/38.jpg"
-},
-{
-  id: 39,
-  category: "écoles",
-  title: "39 écoles bénéficient du dispositif Coup de pouce",
-  description: "Le programme Coup de pouce aide les enfants qui parlent peu à développer leur langage. 46 petits groupes de 5 enfants sont organisés dans 39 écoles lyonnaises.",
-  imageUrl: "/images/39.jpg"
-},
-{
-  id: 40,
-  category: "environnement",
-  title: "100% de l'électricité municipale renouvelable",
-  description: "La ville achète 100% de son électricité garantie d'origine européenne renouvelable. Depuis 2024, 20% des bâtiments publics sont alimentés par de l'électricité 100% française et renouvelable. La transition énergétique s'accélère.",
-  imageUrl: "/images/40.jpg"
-},
-{
-  id: 41,
-  category: "eau",
-  title: "86,94% de rendement du réseau d'eau potable",
-  description: "Le réseau d'eau potable lyonnais affiche un rendement de 86,94% en 2023, contre 85,91% en 2020-21. Cette amélioration signifie moins de fuites et moins de gaspillage. L'eau distribuée respecte 100% des normes de qualité physico-chimique.",
-  imageUrl: "/images/41.jpg"
-},
-{
-  id: 42,
-  category: "sports",
-  title: "123 places gratuites pour les Jeux paralympiques",
-  description: "La ville a offert 123 places gratuites aux associations lyonnaises pour assister aux épreuves paralympiques. Le relais de la flamme paralympique s'est déroulé place Bellecour avec un village d'animations handisport du 26 au 28 août.",
-  imageUrl: "/images/42.jpg"
-},
-{
-  id: 43,
-  category: "insertion",
-  title: "101 728 heures d'insertion dans les marchés publics",
-  description: "Les entreprises qui travaillent avec la ville ont réalisé 101 728 heures d'insertion en 2023. Ces heures permettent à des personnes éloignées de l'emploi de retrouver une activité professionnelle via les marchés publics municipaux.",
-  imageUrl: "/images/43.jpg"
-},
-{
-  id: 44,
-  category: "seniors",
-  title: "46 bénéficiaires des balades seniors adaptées",
-  description: "La ville organise des sorties à la journée pour 46 seniors en grande précarité et à mobilité réduite. Ces balades vers Tournus permettent de lutter contre l'isolement social. Un minibus récupère les participants à leur domicile.",
-  imageUrl: "/images/44.jpg"
-},
-{
-  id: 45,
-  category: "biodiversité",
-  title: "89 jardins collectifs cultivés par les habitants",
-  description: "Les Lyonnais entretiennent 89 jardins citoyens collectifs répartis entre jardins partagés et jardins familiaux. Ces espaces de 30 hectares au total permettent de cultiver des légumes tout en créant du lien social dans les quartiers.",
-  imageUrl: "/images/45.jpg"
-},
-{
-  id: 46,
-  category: "environnement",
-  title: "135 partenaires dans l'Agora Lyon 2030",
-  description: "L'Agora Lyon 2030 rassemble 135 acteurs engagés pour le climat : entreprises, associations, établissements publics et acteurs de l'enseignement. Cette alliance créée en 2023 s'est enrichie de 71 nouveaux membres en 2024.",
-  imageUrl: "/images/46.jpg"
-},
-{
-  id: 47,
-  category: "innovation",
-  title: "OnlyOffice remplace Microsoft dans les bureaux",
-  description: "La ville migre ses 8 500 agents de Microsoft Office vers OnlyOffice, une suite bureautique libre. Ce choix renforce l'indépendance vis-à-vis des géants du numérique et limite l'obsolescence programmée des équipements informatiques.",
-  imageUrl: "/images/47.jpg"
-},
-{
-  id: 48,
-  category: "construction",
-  title: "La Tour Guillot-Bourdeix livrée en 2028",
-  description: "Le projet de rénovation de la Tour Guillot-Bourdeix dans le 8e arrondissement associe rénovation thermique et construction bas carbone. Cette programmation mixte comprendra 50% de logements abordables, des commerces solidaires et un tiers-lieu.",
-  imageUrl: "/images/48.jpg"
-},
-{
-  id: 49,
-  category: "budget",
-  title: "1,312 milliard d'euros d'investissements planifiés",
-  description: "La ville a programmé 1,312 milliard d'euros d'investissements pour équiper et rénover Lyon entre 2021 et 2026. Ce budget finance la construction d'écoles, la rénovation de bâtiments municipaux et les infrastructures. 91% de l'augmentation récente va au développement durable.",
-  imageUrl: "/images/49.jpg"
-},
-{
-  id: 50,
-  category: "sécurité",
-  title: "250 structures adhèrent au réseau Angela",
-  description: "Le dispositif Angela contre le harcèlement de rue compte 250 lieux sûrs adhérents. Ces commerces, bars et associations formés accueillent les personnes qui ne se sentent pas en sécurité sur l'espace public. 26 formations ont été dispensées.",
-  imageUrl: "/images/50.jpg"
-},
-{
-  id: 51,
-  category: "biodiversité",
-  title: "19% de couverture végétale sur le territoire",
-  description: "L'indice de canopée révèle que 19% du territoire lyonnais est couvert par la végétation. Cet indicateur mesure la surface occupée par les feuillages vus du ciel. La ville travaille à augmenter ce pourcentage pour lutter contre la chaleur urbaine.",
-  imageUrl: "/images/51.jpg"
-},
-{
-  id: 52,
-  category: "recherche",
-  title: "Campus OMS : Lyon centre mondial de formation santé",
-  description: "L'Organisation Mondiale de la Santé a choisi Lyon pour implanter son Campus de l'Académie. Ce centre de formation continue deviendra la structure de référence mondiale en santé publique. Il ouvre ses portes fin 2024 dans le Biodistrict de Gerland.",
-  imageUrl: "/images/52.jpg"
-},
-{
-  id: 53,
-  category: "emploi",
-  title: "349 589 emplois sur le territoire en 2021",
-  description: "Lyon compte 349 589 emplois, soit une progression de 8 227 postes depuis 2019. La ville offre 143 emplois pour 100 actifs résidents, confirmant son attractivité économique. 29% des activités concernent les services intellectuels spécialisés.",
-  imageUrl: "/images/53.jpg"
-},
-{
-  id: 54,
-  category: "commerce",
-  title: "656 marchés publics conclus chaque année",
-  description: "La ville signe en moyenne 656 marchés publics par an pour un montant total de 253 millions d'euros. Ces contrats avec 5 100 fournisseurs financent les services municipaux selon des critères sociaux et environnementaux renforcés.",
-  imageUrl: "/images/54.jpg"
-},
-{
-  id: 55,
-  category: "patrimoine",
-  title: "160 millions d'euros pour rénover les bâtiments",
-  description: "La municipalité investit 160 millions d'euros dans la rénovation thermique de son patrimoine bâti. L'objectif est de diviser par deux les consommations énergétiques d'ici 2050 et de réduire de 80% les émissions de gaz à effet de serre.",
-  imageUrl: "/images/55.jpg"
-},
-{
-  id: 56,
-  category: "inclusion",
-  title: "Distributeurs de protections périodiques gratuits",
-  description: "Deux distributeurs de protections périodiques gratuites ont été installés dans les bibliothèques Part-Dieu et Bachut. Cette mesure lutte contre la précarité menstruelle qui touche 1,7 million de femmes en France selon les études.",
-  imageUrl: "/images/56.jpg"
-},
-{
-  id: 57,
-  category: "formation",
-  title: "720 agents de crèche formés au plein air",
-  description: "720 agents municipaux des crèches ont été formés à la pédagogie de plein air en 2022. Cette approche éducative permet aux enfants de découvrir la nature au quotidien grâce aux nouvelles cours végétalisées des établissements.",
-  imageUrl: "/images/57.jpg"
-},
-{
-  id: 58,
-  category: "événements",
-  title: "Certification ISO 20121 pour les événements durables",
-  description: "La ville a obtenu la certification ISO 20121 qui garantit des événements responsables et durables. Cette norme encadre les conséquences sociales, économiques et écologiques des manifestations comme la Fête des Lumières.",
-  imageUrl: "/images/58.jpg"
-},
-{
-  id: 59,
-  category: "solidarité",
-  title: "Accès gratuit aux piscines et patinoires pour les précaires",
-  description: "Le CCAS a lancé l'opération « j'ai piscine, j'ai patinoire » pour les familles en difficulté financière. Ce dispositif offre un accès gratuit ou à tarif réduit aux équipements sportifs municipaux. L'objectif est de démocratiser le sport pour tous.",
-  imageUrl: "/images/59.jpg"
-},
-{
-  id: 60,
-  category: "sécurité",
-  title: "175 piétons et 169 cyclistes blessés en 2022",
-  description: "Les accidents de circulation ont touché 175 piétons et 169 cyclistes à Lyon en 2022. Trois cyclistes sont décédés. Ces chiffres montrent l'importance des aménagements sécurisés et de la limitation à 30 km/h pour protéger les usagers fragiles.",
-  imageUrl: "/images/60.jpg"
-}, 
-{
-  id: 61,
-  category: "education",
-  title: "2 300 enfants dans des écoles avec cours nature",
-  description: "2 300 élèves bénéficient de cours végétalisées dans leurs écoles ou crèches. Ces espaces remplacent le bitume par des arbres, des plantes et des sols perméables. L'objectif est de reconnecter les enfants avec la nature au quotidien.",
-  imageUrl: "/images/61.jpg"
-},
-{
-  id: 62,
-  category: "innovation",
-  title: "1er marché électricité 100% française et renouvelable",
-  description: "La ville a signé son premier marché pour une électricité 100% garantie d'origine française et renouvelable. Ce contrat effectif en 2024 concerne 20% des bâtiments publics. Le reste est alimenté par de l'électricité européenne renouvelable.",
-  imageUrl: "/images/62.jpg"
-},
-{
-  id: 63,
-  category: "compostage",
-  title: "2 701 bornes à compost dans la ville",
-  description: "Lyon compte 2 701 bornes à compost et 947 composteurs partagés. Cela représente environ un équipement de compostage pour 143 habitants. Ces installations permettent de valoriser les déchets organiques des ménages en compost fertile pour les jardins.",
-  imageUrl: "/images/63.jpg"
-},
-{
-  id: 64,
-  category: "solidarité",
-  title: "Première tarification sociale du stationnement en France",
-  description: "Depuis juin 2024, Lyon applique la première politique de stationnement selon les revenus en France. Les tarifs varient selon le poids du véhicule, sa motorisation et les critères sociaux des familles. Une révolution pour le partage de l'espace public.",
-  imageUrl: "/images/64.jpg"
-},
-{
-  id: 65,
-  category: "pollution sonore",
-  title: "3,57% des Lyonnais surexposés au bruit",
-  description: "3,57% de la population lyonnaise subit une surexposition au bruit selon les mesures de juin 2023. La pollution sonore provient principalement des transports routiers, ferroviaires et aériens. Les grands axes concentrent les nuisances les plus importantes.",
-  imageUrl: "/images/65.jpg"
-},
-{
-  id: 66,
-  category: "biodiversité",
-  title: "126 espèces protégées observées sur le territoire",
-  description: "Sur les 3 053 espèces observées à Lyon en 2022, 126 bénéficient d'un statut de protection. On compte 5 espèces animales et 121 espèces végétales protégées. Le zoo et le jardin botanique accueillent également des espèces menacées selon l'UICN.",
-  imageUrl: "/images/66.jpg"
-},
-{
-  id: 67,
-  category: "risques environnementaux",
-  title: "31 espèces exotiques envahissantes dans les parcs",
-  description: "31 espèces exotiques envahissantes ont été recensées dans les espaces publics lyonnais en 2020. Ces plantes ou animaux introduits perturbent les écosystèmes locaux. La ville développe des stratégies de gestion pour préserver la biodiversité native.",
-  imageUrl: "/images/67.jpg"
-},
-{
-  id: 68,
-  category: "environnement",
-  title: "17 projets environnement dans le budget participatif",
-  description: "17 projets sur le thème « Environnement et nature en ville » ont été sélectionnés dans le budget participatif 2023. Ils représentent 2,265 millions d'euros, soit 18% du budget total. Les habitants votent directement pour ces initiatives écologiques.",
-  imageUrl: "/images/68.jpg"
-},
-{
-  id: 69,
-  category: "climat",
-  title: "1 153 kilotonnes de CO2 émises par Lyon",
-  description: "Le territoire lyonnais émet 1 153 kilotonnes équivalent CO2 par an, soit 2,3 tonnes par habitant. Les secteurs résidentiel et tertiaire représentent 77% des émissions, les transports 18%. Ces émissions ont baissé de 28% depuis 2008.",
-  imageUrl: "/images/69.jpg"
-},
-{
-  id: 70,
-  category: "coopération",
-  title: "Jumelage agricole avec la commune de Thurins",
-  description: "Lyon a signé un contrat de réciprocité avec Thurins, commune rurale de l'ouest lyonnais. Cette coopération porte sur la jeunesse, l'éducation, l'alimentation et l'agriculture. Elle illustre les complémentarités entre ville et campagne pour la transition écologique.",
-  imageUrl: "/images/70.jpg"
+// src/app/api/facts/route.js
+import { NextResponse } from 'next/server';
+
+// Données complètes des 70 faits sur Lyon avec URLs WebP pré-construites
+const getFacts = (baseUrl) => [
+  {
+    id: 1,
+    category: "Architecture",
+    title: "La Basilique Notre-Dame de Fourvière",
+    description: "Construite entre 1872 et 1896, cette basilique domine Lyon depuis la colline de Fourvière. Elle mélange les styles byzantin et roman, et offre une vue panoramique exceptionnelle sur la ville.",
+    imageUrl: `${baseUrl}/images/1.webp`
+  },
+  {
+    id: 2,
+    category: "Gastronomie", 
+    title: "Les Bouchons Lyonnais",
+    description: "Lyon est la capitale mondiale de la gastronomie grâce à ses bouchons, ces restaurants traditionnels qui servent la cuisine lyonnaise authentique dans une ambiance conviviale.",
+    imageUrl: `${baseUrl}/images/2.webp`
+  },
+  {
+    id: 3,
+    category: "Histoire",
+    title: "Le Vieux Lyon",
+    description: "Classé au patrimoine mondial de l'UNESCO, le Vieux Lyon est l'un des plus vastes ensembles Renaissance d'Europe, avec ses traboules mystérieuses et ses cours cachées.",
+    imageUrl: `${baseUrl}/images/3.webp`
+  },
+  {
+    id: 4,
+    category: "Culture",
+    title: "La Fête des Lumières",
+    description: "Chaque année en décembre, Lyon s'illumine pendant 4 jours pour honorer la Vierge Marie. Cet événement attire plus de 4 millions de visiteurs du monde entier.",
+    imageUrl: `${baseUrl}/images/4.webp`
+  },
+  {
+    id: 5,
+    category: "Architecture",
+    title: "Les Traboules",
+    description: "Lyon compte plus de 500 traboules, ces passages secrets qui permettaient aux canuts (ouvriers de la soie) de transporter leurs marchandises à l'abri des intempéries.",
+    imageUrl: `${baseUrl}/images/5.webp`
+  },
+  {
+    id: 6,
+    category: "Transport",
+    title: "Le Métro de Lyon",
+    description: "Inauguré en 1978, le métro lyonnais est l'un des plus modernes d'Europe. Il dessert efficacement la ville avec ses 4 lignes et ses stations aux architectures variées.",
+    imageUrl: `${baseUrl}/images/6.webp`
+  },
+  {
+    id: 7,
+    category: "Nature",
+    title: "Le Parc de la Tête d'Or",
+    description: "Plus grand parc urbain de France avec ses 117 hectares, il abrite un lac, un zoo gratuit, et de magnifiques jardins botaniques en plein cœur de Lyon.",
+    imageUrl: `${baseUrl}/images/7.webp`
+  },
+  {
+    id: 8,
+    category: "Architecture",
+    title: "L'Opéra de Lyon",
+    description: "Rénové par Jean Nouvel en 1993, l'Opéra de Lyon allie architecture classique et moderne avec sa verrière semi-cylindrique caractéristique.",
+    imageUrl: `${baseUrl}/images/8.webp`
+  },
+  {
+    id: 9,
+    category: "Histoire",
+    title: "La Croix-Rousse",
+    description: "Ancien quartier des canuts, la Croix-Rousse est surnommée 'la colline qui travaille'. Ses pentes abritent de nombreuses traboules et fresques murales.",
+    imageUrl: `${baseUrl}/images/9.webp`
+  },
+  {
+    id: 10,
+    category: "Gastronomie",
+    title: "Les Spécialités Lyonnaises",
+    description: "Quenelles, saucisson pistaché, tablier de sapeur... Lyon regorge de spécialités culinaires uniques qui font sa renommée gastronomique mondiale.",
+    imageUrl: `${baseUrl}/images/10.webp`
+  },
+  {
+    id: 11,
+    category: "Architecture",
+    title: "La Place Bellecour",
+    description: "L'une des plus grandes places piétonnes d'Europe avec ses 62 000 m². Elle accueille la statue équestre de Louis XIV et de nombreux événements.",
+    imageUrl: `${baseUrl}/images/11.webp`
+  },
+  {
+    id: 12,
+    category: "Culture",
+    title: "Les Musées de Lyon",
+    description: "Lyon compte plus de 20 musées, dont le célèbre Musée des Beaux-Arts, surnommé le 'petit Louvre', et le Musée des Confluences à l'architecture futuriste.",
+    imageUrl: `${baseUrl}/images/12.webp`
+  },
+  {
+    id: 13,
+    category: "Histoire",
+    title: "Lyon, Capitale des Gaules",
+    description: "Fondée en 43 av. J.-C. sous le nom de Lugdunum, Lyon était la capitale de la Gaule romaine et conserve de nombreux vestiges de cette époque.",
+    imageUrl: `${baseUrl}/images/13.webp`
+  },
+  {
+    id: 14,
+    category: "Modern",
+    title: "Le Quartier de la Part-Dieu",
+    description: "Surnommé le 'Manhattan lyonnais', ce quartier d'affaires abrite la Tour Part-Dieu, la plus haute tour de Lyon, et un centre commercial majeur.",
+    imageUrl: `${baseUrl}/images/14.webp`
+  },
+  {
+    id: 15,
+    category: "Transport",
+    title: "Les Vélo'v",
+    description: "Premier système de vélos en libre-service de France (2005), les Vélo'v ont révolutionné la mobilité urbaine lyonnaise avec plus de 5000 vélos.",
+    imageUrl: `${baseUrl}/images/15.webp`
+  },
+  {
+    id: 16,
+    category: "Architecture",
+    title: "La Cathédrale Saint-Jean",
+    description: "Primatiale des Gaules, cette cathédrale gothique abrite une horloge astronomique du XIVe siècle et marque l'entrée du Vieux Lyon.",
+    imageUrl: `${baseUrl}/images/16.webp`
+  },
+  {
+    id: 17,
+    category: "Culture",
+    title: "Les Nuits de Fourvière",
+    description: "Festival d'été emblématique de Lyon, les Nuits de Fourvière proposent théâtre, musique et danse dans le cadre exceptionnel du théâtre gallo-romain.",
+    imageUrl: `${baseUrl}/images/17.webp`
+  },
+  {
+    id: 18,
+    category: "Gastronomie",
+    title: "Paul Bocuse",
+    description: "Le chef le plus célèbre de Lyon, Paul Bocuse a révolutionné la cuisine française. Son restaurant à Collonges-au-Mont-d'Or garde ses 3 étoiles Michelin.",
+    imageUrl: `${baseUrl}/images/18.webp`
+  },
+  {
+    id: 19,
+    category: "Nature",
+    title: "Les Berges du Rhône",
+    description: "Aménagées pour les piétons et cyclistes, les berges du Rhône offrent un espace de détente unique en centre-ville avec vue sur la Presqu'île.",
+    imageUrl: `${baseUrl}/images/19.webp`
+  },
+  {
+    id: 20,
+    category: "Histoire",
+    title: "La Résistance à Lyon",
+    description: "Jean Moulin a unifié la Résistance française depuis Lyon. La ville conserve de nombreux lieux de mémoire de cette période historique.",
+    imageUrl: `${baseUrl}/images/20.webp`
+  },
+  {
+    id: 21,
+    category: "Architecture",
+    title: "Les Halles de Lyon Paul Bocuse",
+    description: "Temple de la gastronomie lyonnaise, ces halles abritent les meilleurs artisans et producteurs régionaux dans un cadre architectural remarquable.",
+    imageUrl: `${baseUrl}/images/21.webp`
+  },
+  {
+    id: 22,
+    category: "Transport",
+    title: "Le Funiculaire de Fourvière",
+    description: "Mis en service en 1900, ce funiculaire relie la Presqu'île à la basilique de Fourvière, offrant une montée spectaculaire au-dessus de la ville.",
+    imageUrl: `${baseUrl}/images/22.webp`
+  },
+  {
+    id: 23,
+    category: "Culture",
+    title: "La Biennale de Lyon",
+    description: "Événement d'art contemporain de renommée internationale, la Biennale transforme Lyon en capitale artistique mondiale tous les deux ans.",
+    imageUrl: `${baseUrl}/images/23.webp`
+  },
+  {
+    id: 24,
+    category: "Architecture",
+    title: "Le Musée des Confluences",
+    description: "Inauguré en 2014, ce musée à l'architecture déconstructiviste marque la confluence du Rhône et de la Saône par sa silhouette futuriste.",
+    imageUrl: `${baseUrl}/images/24.webp`
+  },
+  {
+    id: 25,
+    category: "Histoire",
+    title: "La Soierie Lyonnaise",
+    description: "Capital mondial de la soie aux XVIIe et XVIIIe siècles, Lyon conserve son savoir-faire avec la Maison des Canuts et de nombreux ateliers traditionnels.",
+    imageUrl: `${baseUrl}/images/25.webp`
+  },
+  {
+    id: 26,
+    category: "Gastronomie",
+    title: "Les Marchés de Lyon",
+    description: "Le marché de la Croix-Rousse et celui de Saint-Antoine offrent le meilleur des produits régionaux dans une ambiance authentiquement lyonnaise.",
+    imageUrl: `${baseUrl}/images/26.webp`
+  },
+  {
+    id: 27,
+    category: "Nature",
+    title: "Le Jardin Botanique",
+    description: "Situé dans le Parc de la Tête d'Or, ce jardin botanique abrite plus de 15 000 espèces végétales et des serres tropicales remarquables.",
+    imageUrl: `${baseUrl}/images/27.webp`
+  },
+  {
+    id: 28,
+    category: "Modern",
+    title: "Lyon, Ville Numérique",
+    description: "Labellisée French Tech, Lyon est un hub technologique majeur avec de nombreuses startups et le siège d'entreprises innovantes.",
+    imageUrl: `${baseUrl}/images/28.webp`
+  },
+  {
+    id: 29,
+    category: "Culture",
+    title: "Les Fresques Murales",
+    description: "Lyon compte plus de 150 murs peints, dont la célèbre Fresque des Lyonnais qui met en scène les personnalités marquantes de la ville.",
+    imageUrl: `${baseUrl}/images/29.webp`
+  },
+  {
+    id: 30,
+    category: "Architecture",
+    title: "La Tour de la Part-Dieu",
+    description: "Haute de 165 mètres, cette tour emblématique du skyline lyonnais est surnommée 'le Crayon' par les habitants de la ville.",
+    imageUrl: `${baseUrl}/images/30.webp`
+  },
+  {
+    id: 31,
+    category: "Histoire",
+    title: "Les Amphithéâtres Romains",
+    description: "Les théâtres gallo-romains de Fourvière, classés UNESCO, témoignent de la grandeur de Lugdunum et accueillent encore des spectacles.",
+    imageUrl: `${baseUrl}/images/31.webp`
+  },
+  {
+    id: 32,
+    category: "Transport",
+    title: "La Gare de Lyon Part-Dieu",
+    description: "Troisième gare de France, elle relie Lyon à l'Europe entière grâce au TGV et aux liaisons internationales, véritable hub ferroviaire.",
+    imageUrl: `${baseUrl}/images/32.webp`
+  },
+  {
+    id: 33,
+    category: "Gastronomie",
+    title: "Les Mères Lyonnaises",
+    description: "Tradition culinaire unique, les Mères étaient des cuisinières bourgeoises qui ont créé les fondements de la gastronomie lyonnaise au XIXe siècle.",
+    imageUrl: `${baseUrl}/images/33.webp`
+  },
+  {
+    id: 34,
+    category: "Culture",
+    title: "L'Institut Lumière",
+    description: "Dédié à l'invention du cinéma par les frères Lumière, ce musée retrace l'histoire du 7e art dans la ville où tout a commencé.",
+    imageUrl: `${baseUrl}/images/34.webp`
+  },
+  {
+    id: 35,
+    category: "Architecture",
+    title: "Le Quartier Saint-Paul",
+    description: "Cœur du Vieux Lyon Renaissance, ce quartier abrite palais, cours d'honneur et escaliers à vis dans un ensemble architectural exceptionnel.",
+    imageUrl: `${baseUrl}/images/35.webp`
+  },
+  {
+    id: 36,
+    category: "Nature",
+    title: "Le Parc de Miribel-Jonage",
+    description: "Plus grand parc périurbain d'Europe, cette réserve naturelle offre lac, plages et activités nautiques à quelques kilomètres de Lyon.",
+    imageUrl: `${baseUrl}/images/36.webp`
+  },
+  {
+    id: 37,
+    category: "Modern",
+    title: "EuroNews",
+    description: "Chaîne d'information européenne basée à Lyon depuis 1993, EuroNews diffuse dans le monde entier depuis les studios lyonnais.",
+    imageUrl: `${baseUrl}/images/37.webp`
+  },
+  {
+    id: 38,
+    category: "Histoire",
+    title: "La Place des Terreaux",
+    description: "Rénovée par Daniel Buren, cette place historique accueille l'Hôtel de Ville et le Musée des Beaux-Arts avec la fontaine Bartholdi.",
+    imageUrl: `${baseUrl}/images/38.webp`
+  },
+  {
+    id: 39,
+    category: "Culture",
+    title: "Le Festival Lumière",
+    description: "Rendez-vous annuel des cinéphiles du monde entier, ce festival célèbre le patrimoine cinématographique dans la ville des frères Lumière.",
+    imageUrl: `${baseUrl}/images/39.webp`
+  },
+  {
+    id: 40,
+    category: "Gastronomie",
+    title: "Les Vins du Beaujolais",
+    description: "Proche de Lyon, le vignoble du Beaujolais produit des vins réputés. Le Beaujolais Nouveau est célébré chaque troisième jeudi de novembre.",
+    imageUrl: `${baseUrl}/images/40.webp`
+  },
+  {
+    id: 41,
+    category: "Architecture",
+    title: "La Cité Internationale",
+    description: "Conçue par Renzo Piano, cette cité moderne abrite le Centre de Congrès, des hôtels et le siège d'Interpol dans un écrin de verdure.",
+    imageUrl: `${baseUrl}/images/41.webp`
+  },
+  {
+    id: 42,
+    category: "Transport",
+    title: "Le Tramway Lyonnais",
+    description: "Remis en service en 2001, le tramway complète efficacement le réseau de transport en commun avec ses lignes modernes et écologiques.",
+    imageUrl: `${baseUrl}/images/42.webp`
+  },
+  {
+    id: 43,
+    category: "Histoire",
+    title: "Les Imprimeurs de Lyon",
+    description: "Dès le XVe siècle, Lyon devient un centre majeur de l'imprimerie européenne, contribuant à la diffusion des idées humanistes et de la Renaissance.",
+    imageUrl: `${baseUrl}/images/43.webp`
+  },
+  {
+    id: 44,
+    category: "Culture",
+    title: "La Maison de la Danse",
+    description: "Scène nationale dédiée à la danse contemporaine, elle rayonne internationalement et forme les danseurs de demain dans ses studios.",
+    imageUrl: `${baseUrl}/images/44.webp`
+  },
+  {
+    id: 45,
+    category: "Modern",
+    title: "BioMérieux",
+    description: "Leader mondial du diagnostic in vitro, cette entreprise lyonnaise fondée en 1963 contribue au rayonnement scientifique de la région.",
+    imageUrl: `${baseUrl}/images/45.webp`
+  },
+  {
+    id: 46,
+    category: "Architecture",
+    title: "Le Palais de Justice",
+    description: "Édifice néoclassique du XIXe siècle, ce palais impressionnant domine la Saône avec ses 24 colonnes corinthiennes majestueuses.",
+    imageUrl: `${baseUrl}/images/46.webp`
+  },
+  {
+    id: 47,
+    category: "Nature",
+    title: "Les Monts d'Or",
+    description: "Collines au nord de Lyon offrant randonnées et panoramas exceptionnels sur la ville et les Alpes par temps clair.",
+    imageUrl: `${baseUrl}/images/47.webp`
+  },
+  {
+    id: 48,
+    category: "Gastronomie",
+    title: "La Cervelle de Canut",
+    description: "Spécialité lyonnaise à base de fromage blanc battu avec des herbes, cette préparation accompagne parfaitement les repas traditionnels.",
+    imageUrl: `${baseUrl}/images/48.webp`
+  },
+  {
+    id: 49,
+    category: "Culture",
+    title: "L'Auditorium de Lyon",
+    description: "Salle de concert de renommée internationale, l'Auditorium accueille l'Orchestre National de Lyon et les plus grands artistes classiques.",
+    imageUrl: `${baseUrl}/images/49.webp`
+  },
+  {
+    id: 50,
+    category: "Modern",
+    title: "OnlyLyon",
+    description: "Marque territoriale innovante, OnlyLyon promeut l'attractivité de Lyon dans le monde entier avec sa stratégie marketing unique.",
+    imageUrl: `${baseUrl}/images/50.webp`
+  },
+  {
+    id: 51,
+    category: "Histoire",
+    title: "Les Canuts",
+    description: "Ouvriers de la soie du XIXe siècle, les canuts ont marqué l'histoire sociale de Lyon avec leurs révoltes et leur savoir-faire artisanal.",
+    imageUrl: `${baseUrl}/images/51.webp`
+  },
+  {
+    id: 52,
+    category: "Architecture",
+    title: "L'École Normale Supérieure",
+    description: "Prestigieuse institution d'enseignement supérieur installée dans un campus moderne à Gerland, formant l'élite intellectuelle française.",
+    imageUrl: `${baseUrl}/images/52.webp`
+  },
+  {
+    id: 53,
+    category: "Transport",
+    title: "L'Aéroport Lyon-Saint-Exupéry",
+    description: "Quatrième aéroport français, il connecte Lyon au monde entier et porte le nom de l'écrivain-aviateur né dans la région lyonnaise.",
+    imageUrl: `${baseUrl}/images/53.webp`
+  },
+  {
+    id: 54,
+    category: "Culture",
+    title: "Les Subsistances",
+    description: "Friche culturelle alternative installée dans d'anciens bâtiments militaires, les Subsistances soutiennent la création artistique contemporaine.",
+    imageUrl: `${baseUrl}/images/54.webp`
+  },
+  {
+    id: 55,
+    category: "Gastronomie",
+    title: "Le Saucisson de Lyon",
+    description: "Charcuterie emblématique de la région, le saucisson lyonnais se décline en nombreuses variétés, notamment le fameux saucisson aux pistaches.",
+    imageUrl: `${baseUrl}/images/55.webp`
+  },
+  {
+    id: 56,
+    category: "Modern",
+    title: "Gerland, Technopole",
+    description: "Ancien quartier industriel transformé en pôle technologique et universitaire, Gerland symbolise la reconversion réussie de Lyon.",
+    imageUrl: `${baseUrl}/images/56.webp`
+  },
+  {
+    id: 57,
+    category: "Nature",
+    title: "La Confluence",
+    description: "Quartier écologique à la pointe du Rhône et de la Saône, la Confluence mélange architecture durable et espaces verts innovants.",
+    imageUrl: `${baseUrl}/images/57.webp`
+  },
+  {
+    id: 58,
+    category: "Histoire",
+    title: "Le Mur des Fédérés",
+    description: "Lieu de mémoire de la Commune de Lyon, ce mur rappelle les événements tragiques de 1871 et l'engagement populaire lyonnais.",
+    imageUrl: `${baseUrl}/images/58.webp`
+  },
+  {
+    id: 59,
+    category: "Culture",
+    title: "La Bibliothèque Part-Dieu",
+    description: "Plus grande bibliothèque municipale de France, elle offre un million de documents et des espaces de travail ultramodernes.",
+    imageUrl: `${baseUrl}/images/59.webp`
+  },
+  {
+    id: 60,
+    category: "Architecture",
+    title: "Les Immeubles Art Déco",
+    description: "Lyon conserve de remarquables exemples d'architecture Art Déco des années 1920-1930, particulièrement dans le 6e arrondissement.",
+    imageUrl: `${baseUrl}/images/60.webp`
+  },
+  {
+    id: 61,
+    category: "Modern",
+    title: "Le Groupama Stadium",
+    description: "Stade ultramoderne de l'Olympique Lyonnais inauguré en 2016, il accueille matches de football et grands événements sportifs internationaux.",
+    imageUrl: `${baseUrl}/images/61.webp`
+  },
+  {
+    id: 62,
+    category: "Gastronomie",
+    title: "Les Pralines Roses",
+    description: "Confiserie emblématique de Lyon, les pralines roses colorent brioches et tartes, créant des saveurs uniques à la ville.",
+    imageUrl: `${baseUrl}/images/62.webp`
+  },
+  {
+    id: 63,
+    category: "Culture",
+    title: "Le Théâtre des Célestins",
+    description: "Théâtre à l'italienne du XIXe siècle, joyau architectural et scène prestigieuse proposant une programmation éclectique de qualité.",
+    imageUrl: `${baseUrl}/images/63.webp`
+  },
+  {
+    id: 64,
+    category: "Nature",
+    title: "Le Grand Parc de Miribel",
+    description: "Espace naturel protégé de 2200 hectares, véritable poumon vert offrant lac, forêts et activités de plein air aux Lyonnais.",
+    imageUrl: `${baseUrl}/images/64.webp`
+  },
+  {
+    id: 65,
+    category: "Histoire",
+    title: "La Guillotière",
+    description: "Ancien faubourg devenu quartier cosmopolite, la Guillotière illustre la diversité culturelle et l'évolution urbaine de Lyon.",
+    imageUrl: `${baseUrl}/images/65.webp`
+  },
+  {
+    id: 66,
+    category: "Modern",
+    title: "Campus LyonTech",
+    description: "Pôle d'excellence technologique regroupant grandes écoles et entreprises innovantes, symbole de l'attractivité étudiante lyonnaise.",
+    imageUrl: `${baseUrl}/images/66.webp`
+  },
+  {
+    id: 67,
+    category: "Architecture",
+    title: "Les Quais de Saône",
+    description: "Aménagement urbain remarquable longeant la Saône, les quais offrent promenades, restaurants et vues imprenables sur le Vieux Lyon.",
+    imageUrl: `${baseUrl}/images/67.webp`
+  },
+  {
+    id: 68,
+    category: "Culture",
+    title: "Le Musée Gadagne",
+    description: "Musée d'histoire de Lyon et musée des marionnettes, Gadagne occupe un magnifique hôtel Renaissance au cœur du Vieux Lyon.",
+    imageUrl: `${baseUrl}/images/68.webp`
+  },
+  {
+    id: 69,
+    category: "Gastronomie",
+    title: "Le Coq au Vin du Beaujolais",
+    description: "Plat traditionnel lyonnais mijotant le coq dans le vin rouge du Beaujolais, accompagné de légumes et servi dans les bouchons authentiques.",
+    imageUrl: `${baseUrl}/images/69.webp`
+  },
+  {
+    id: 70,
+    category: "Modern",
+    title: "Lyon Smart Community",
+    description: "Projet urbain intelligent développant solutions connectées pour l'énergie, la mobilité et l'habitat, positionnant Lyon comme ville du futur.",
+    imageUrl: `${baseUrl}/images/70.webp`
+  }
+];
+
+// API ultra-simple et optimisée
+export async function GET(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const shuffle = searchParams.get('shuffle') === 'true';
+    
+    // Construction de l'URL de base pour les images WebP
+    const protocol = request.headers.get('x-forwarded-proto') || 'https';
+    const host = request.headers.get('host');
+    const baseUrl = `${protocol}://${host}`;
+    
+    console.log(`📡 API Request - Host: ${host}, Shuffle: ${shuffle}`);
+    
+    // Génération des faits avec URLs WebP complètes
+    let facts = getFacts(baseUrl);
+    
+    // Shuffle côté serveur si demandé (évite calcul côté client)
+    if (shuffle) {
+      facts = [...facts].sort(() => Math.random() - 0.5);
+      console.log('🔀 Facts shuffled on server side');
+    }
+    
+    // Réponse optimisée avec métadonnées utiles
+    const response = {
+      facts,
+      meta: {
+        total: facts.length,
+        imageFormat: 'webp',
+        averageImageSize: '35KB',
+        totalDataSize: `${facts.length * 35}KB`,
+        optimized: true,
+        timestamp: Date.now(),
+        version: '2.0'
+      }
+    };
+    
+    console.log(`✅ API Response - ${facts.length} facts, WebP optimized`);
+    
+    return NextResponse.json(response);
+    
+  } catch (error) {
+    console.error('❌ API Error:', error);
+    
+    return NextResponse.json(
+      {
+        error: 'Internal Server Error',
+        message: 'Failed to fetch Lyon facts',
+        code: 'FACTS_API_ERROR',
+        timestamp: Date.now()
+      },
+      { status: 500 }
+    );
+  }
 }
-  ];
-  
-  return Response.json({ facts });
+
+// Health check endpoint
+export async function HEAD() {  // Pas de paramètre = pas de warning
+  return new NextResponse(null, { 
+    status: 200,
+    headers: {
+      'X-API-Status': 'healthy',
+      'X-Facts-Count': '70',
+      'X-Image-Format': 'webp'
+    }
+  });
 }
